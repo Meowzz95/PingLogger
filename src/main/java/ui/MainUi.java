@@ -52,7 +52,7 @@ public class MainUi {
         frame.setBounds(200,200,500,500);
         //frame.pack();
         frame.setVisible(true);
-
+        System.out.println("Ui initialized starting controller");
         controller = new PingController("192.168.99.1").setListener(mainUi::updateReadings);
         try {
             controller.start();

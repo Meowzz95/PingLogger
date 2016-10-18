@@ -1,5 +1,7 @@
 package controller;
 
+import constant.Config;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -54,7 +56,7 @@ public class PingController {
     private void processResult(String line) {
         //skip first few lines
         if(!replyStarted){
-            if(line.contains("Pinging"))
+            if(line.contains(Config.getKeyWord("PING_START")))
                 replyStarted=true;
             return;
         }
@@ -88,7 +90,7 @@ public class PingController {
     private int parseResult(String msg){
         System.out.println("controller.PingController.parseResult msg="+msg);
 
-        int timeStartIndex=msg.indexOf("time")+5;
+        int timeStartIndex=msg.indexOf(Config.getKeyWord("TIME"))+Integer.valueOf(Config.getKeyWord("TIME_OFFSET"));
         if(!msg.contains("TTL"))
             return -1;
         else{
